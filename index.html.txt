@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Dane demograficzne</h2>
+
+<form id="form">
+<select id="gender">
+<option>kobieta</option>
+<option>mężczyzna</option>
+<option>inne</option>
+</select><br><br>
+
+<input type="number" id="age" placeholder="Wiek"><br><br>
+
+<select id="education">
+<option>podstawowe</option>
+<option>średnie</option>
+<option>techniczne</option>
+<option>zawodowe</option>
+<option>wyższe</option>
+</select><br><br>
+
+<button type="submit">Przejdź dalej</button>
+</form>
+
+<script>
+if (localStorage.getItem("done")) {
+  document.body.innerHTML = `
+  <h2>Dziękujemy za udział w badaniu.</h2>
+  <p>Celem testu było sprawdzenie cierpliwości użytkownika.</p>
+  `;
+}
+
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  localStorage.setItem("gender", document.getElementById("gender").value);
+  localStorage.setItem("age", document.getElementById("age").value);
+  localStorage.setItem("education", document.getElementById("education").value);
+
+  window.location.href = "loading.html";
+});
+</script>
+
+</body>
+</html>
