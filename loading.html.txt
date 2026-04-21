@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Trwa ładowanie. Proszę czekać…</h2>
+
+<script>
+let startTime = Date.now();
+
+const API_URL = "https://script.google.com/macros/s/AKfycbxUkqpp6tZ39vKqVDsNYYBJMXHUEGniG_3cvw4CyahP5YWglkj5JkYHXaexQ2DoPB5i/exec";
+
+window.addEventListener("beforeunload", function () {
+
+  let endTime = Date.now();
+  let seconds = Math.floor((endTime - startTime)/1000);
+
+  fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      gender: localStorage.getItem("gender"),
+      age: localStorage.getItem("age"),
+      education: localStorage.getItem("education"),
+      time: seconds
+    })
+  });
+
+  localStorage.setItem("done", "true");
+});
+</script>
+
+</body>
+</html>
